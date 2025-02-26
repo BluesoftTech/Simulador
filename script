@@ -1,0 +1,23 @@
+function calcularParcela(valor, taxa, parcelas) {
+    taxa = taxa / 100; // Convertendo a taxa para decimal
+    let parcela = (valor * taxa) / (1 - Math.pow(1 + taxa, -parcelas));
+    let totalPago = parcela * parcelas;
+    let jurosTotal = totalPago - valor;
+
+    return {
+        valorParcela: parcela.toFixed(2),
+        totalPago: totalPago.toFixed(2),
+        jurosTotal: jurosTotal.toFixed(2)
+    };
+}
+
+// Exemplo de uso
+const valorEmprestimo = 30000; // Valor do empréstimo
+const taxaJurosMensal = 1.3; // Taxa de juros mensal (1,3%)
+const numeroParcelas = 36; // Número de parcelas
+
+const resultado = calcularParcela(valorEmprestimo, taxaJurosMensal, numeroParcelas);
+
+console.log("Valor da Parcela: R$", resultado.valorParcela);
+console.log("Total Pago: R$", resultado.totalPago);
+console.log("Total de Juros Pago: R$", resultado.jurosTotal);
